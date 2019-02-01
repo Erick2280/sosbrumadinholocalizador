@@ -27,7 +27,7 @@ export class Tab2Page {
         this.isConfigFieldsDisabled = true;
         this.configWarningField = 'Desative o Envio de Localização para alterar.';
       } else {
-        this.configWarningField = ''
+        this.configWarningField = '';
         this.isConfigFieldsDisabled = false;
       }
     });
@@ -49,10 +49,10 @@ export class Tab2Page {
   }
 
   testIfUrlIsValid() {
-    if (this.locationServiceUrl.match(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/)) {
-      this.configWarningField = ''
+    if (/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/.test(this.locationServiceUrl)) {
+      this.configWarningField = '';
     } else {
-      this.configWarningField = 'Esta URL parece não ser válida.'
+      this.configWarningField = 'Esta URL parece não ser válida.';
     }
   }
 
