@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Início
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card class="status-card">
+      <ion-img src="/assets/shapes.svg"></ion-img>
+      <ion-item lines="none">
+          <ion-label><ion-card-title>Envio de localização</ion-card-title></ion-label>
+          <ion-toggle [(ngModel)]="isLocationServiceEnabled" [disabled]="isLocationServiceUnavailable" (ionChange)="acknowledgeLocationService()" end></ion-toggle>
+      </ion-item>
+      <ion-card-content>
+        <p>{{ locationServiceDescriptor }}<strong>{{ locationServiceUrl }}</strong>.</p>
+      </ion-card-content>
+    </ion-card>
+</ion-content>

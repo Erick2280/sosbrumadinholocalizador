@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Configurações
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-badge color="danger">{{ disabledConfigWarning }}</ion-badge>
+      <ion-label position="floating">URL da API</ion-label>
+      <ion-input [(ngModel)]="locationServiceUrl" [disabled]="isConfigFieldsDisabled"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="saveConfigs()">
+      <ion-icon name="save"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
