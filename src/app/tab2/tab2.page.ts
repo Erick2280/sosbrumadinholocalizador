@@ -14,7 +14,7 @@ export class Tab2Page {
     ) {}
   locationServiceUrl: string;
   isLocationServiceEnabled: boolean;
-  disabledConfigWarning: string = "";
+  configWarningField: string = "";
   isConfigFieldsDisabled: boolean = true;
 
   ionViewWillEnter() {
@@ -25,9 +25,9 @@ export class Tab2Page {
       this.isLocationServiceEnabled = serviceEnabledValue;
       if (this.isLocationServiceEnabled) {
         this.isConfigFieldsDisabled = true;
-        this.disabledConfigWarning = 'Desative o Envio de Localização para alterar.';
+        this.configWarningField = 'Desative o Envio de Localização para alterar.';
       } else {
-        this.disabledConfigWarning = ''
+        this.configWarningField = ''
         this.isConfigFieldsDisabled = false;
       }
     });
@@ -46,6 +46,14 @@ export class Tab2Page {
   saveConfigs() {
     this.storage.set('locationServiceUrl', this.locationServiceUrl);
     this.presentSaveToast();
+  }
+
+  testIfUrlIsValid() {
+    if (this.locationServiceUrl.match(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/)) {
+      this.configWarningField = ''
+    } else {
+      this.configWarningField = 'Esta URL parece não ser válida.'
+    }
   }
 
 }
