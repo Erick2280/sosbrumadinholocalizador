@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { LocationService } from '../location.service'
+import leaflet from 'leaflet';
 
 @Component({
   selector: 'app-tab1',
@@ -17,9 +18,22 @@ export class Tab1Page {
     locationServiceDescriptor: string;
     isLocationServiceEnabled: boolean = false;
     isLocationServiceUnavailable: boolean = false;
+    map: any;
 
     ionViewWillEnter() {
       this.updateCard();
+      this.updateMap();
+    }
+
+    updateMap() {        
+      this.map = new leaflet.Map('map-container');
+
+      let url = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+      let attrib = 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
+      let mapLayer = new leaflet.TileLayer(url, {minZoom: 4, maxZoom: 20, attribution: attrib});		
+
+      this.map.setView(new leaflet.LatLng(-20.126, -44.125),13);
+      this.map.addLayer(mapLayer);
     }
 
     updateCard() {
