@@ -27,7 +27,12 @@ Uma página abrirá no navegador com o app. É possível usar o inspetor do Chro
 Dentro da pasta raiz do repositório, execute:
 
     ionic cordova prepare android
+
+Toda vez que quiser gerar um novo arquivo `.apk`, execute:
+
     ionic cordova run android
+
+O comando automaticamente instalará o `.apk` em um dispositivo conectado ao PC com a Depuração USB ativada ou uma instância do emulador do Android. Caso não haja nenhum desses, uma nova instância do emulador do Android será iniciada com o aplicativo.
 
 ## HELP NEEDED
 
