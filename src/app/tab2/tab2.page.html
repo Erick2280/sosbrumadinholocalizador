@@ -11,7 +11,7 @@
     <ion-item>
       <ion-badge color="danger">{{ disabledConfigWarning }}</ion-badge>
       <ion-label position="floating">URL da API</ion-label>
-      <ion-input [(ngModel)]="locationServiceUrl" [disabled]="isConfigFieldsDisabled"></ion-input>
+      <ion-input [(ngModel)]="locationServiceUrl" [disabled]="isConfigFieldsDisabled" type="url"></ion-input>
     </ion-item>
   </ion-list>
 

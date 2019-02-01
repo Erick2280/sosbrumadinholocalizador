@@ -17,7 +17,8 @@ export class LocationService {
     isLocationServiceEnabled: boolean;
 
     private startTracking() {
-    /*  this.storage.get('locationServiceUrl').then((urlValue) => {
+          
+    this.storage.get('locationServiceUrl').then((urlValue) => {
         this.locationServiceUrl = urlValue;
         this.backgroundGeolocation.configure({
           desiredAccuracy: 10,
@@ -25,11 +26,12 @@ export class LocationService {
           distanceFilter: 50,
           notificationTitle: 'Localizador SOS Brumadinho ativado',
           notificationText: 'Este dispositivo está configurado para enviar periodicamente sua localização.',
-          debug: true,
+          debug: true, // botar false
           interval: 10000,
           fastestInterval: 5000,
           activitiesInterval: 10000,
           url: this.locationServiceUrl,
+          syncUrl: this.locationServiceUrl,
           httpHeaders: {
             // arrumar o cabeçalho
             'X-FOO': 'bar'
@@ -45,21 +47,21 @@ export class LocationService {
       // Ativa o sistema de geolocalização.
       this.backgroundGeolocation.start();
 
-      }); */
+      });
       console.log("Ativado!")
 
     }
 
     private stopTracking() {
       console.log('Desativado!');
-      /* this.backgroundGeolocation.stop(); */  
+      this.backgroundGeolocation.stop();
     }
 
     public toggleService() {
       this.storage.get('isLocationServiceEnabled').then((serviceEnabledValue) => {
         this.isLocationServiceEnabled = serviceEnabledValue;
-        console.log(serviceEnabledValue)
         if (this.isLocationServiceEnabled) {
+          // this.backgroundGeolocation.checkStatus().then()
           this.startTracking();
         } else {
           this.stopTracking();
