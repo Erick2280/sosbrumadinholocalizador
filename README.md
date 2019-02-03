@@ -26,6 +26,7 @@ Uma página abrirá no navegador com o app. É possível usar o inspetor do Chro
 
 Dentro da pasta raiz do repositório, execute:
 
+    npm install
     ionic cordova prepare android
 
 Toda vez que quiser gerar um novo arquivo `.apk`, execute:
