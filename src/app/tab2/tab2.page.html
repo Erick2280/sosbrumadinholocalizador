@@ -11,12 +11,15 @@
     <ion-item>
       <ion-badge color="danger">{{ configWarningField }}</ion-badge>
       <ion-label position="floating">URL da API</ion-label>
-      <ion-input [(ngModel)]="locationServiceUrl" [disabled]="isConfigFieldsDisabled" (ionChange)="testIfUrlIsValid()" type="url"></ion-input>
+      <ion-input [(ngModel)]="locationServiceUrl" clearInput="true" [disabled]="isConfigFieldsDisabled" (ionChange)="testIfUrlIsValid()" type="url"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+        <ion-button slot="start" fill="clear" [disabled]="isConfigFieldsDisabled" (click)="useStandardUrl()">Usar URL padrão<ion-icon slot="start" name="link"></ion-icon></ion-button>
     </ion-item>
   </ion-list>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="saveConfigs()">
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="saveConfigs()" [disabled]="isConfigFieldsDisabled">
       <ion-icon name="save"></ion-icon>
     </ion-fab-button>
   </ion-fab>

@@ -49,11 +49,15 @@ export class Tab2Page {
   }
 
   testIfUrlIsValid() {
-    if (/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/.test(this.locationServiceUrl)) {
+    if ((this.locationServiceUrl == '') || (/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/.test(this.locationServiceUrl))) {
       this.configWarningField = '';
     } else {
       this.configWarningField = 'Esta URL parece não ser válida.';
     }
+  }
+
+  useStandardUrl() {
+    this.locationServiceUrl = "https://brumadinho-api.herokuapp.com/api/add"
   }
 
 }

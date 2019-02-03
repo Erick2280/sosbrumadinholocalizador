@@ -34,13 +34,11 @@ export class LocationService {
           syncUrl: this.locationServiceUrl,
           httpHeaders: {
             // arrumar o cabeçalho
-            'X-FOO': 'bar'
           },
           // customizar as propriedades do post
           postTemplate: {
             lat: '@latitude',
-            lon: '@longitude',
-            foo: 'bar'
+            long: '@longitude',
           }
         });
 
@@ -68,6 +66,18 @@ export class LocationService {
         }
 
       });
+    }
+
+    public getCurrentLocation() {
+      return this.geolocation.getCurrentPosition();
+    }
+
+    public watchCurrentLocation() {
+      return this.geolocation.watchPosition();
+    }
+
+    public getPastLocations() {
+        // implementar pra passar pro mapa
     }
 
   }

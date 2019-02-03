@@ -22,15 +22,28 @@ export class Tab1Page {
 
     ionViewWillEnter() {
       this.updateCard();
-      this.updateMap();
+      this.map.invalidateSize();
     }
 
-    updateMap() {        
+    ngOnInit() {
+      this.createMap();
+    }
+
+    updateCurrentLocation() {
+      // apenas para testes, futuramente vai refletir no mapa
+      this.locationService.getCurrentLocation().then((resp) => {
+        console.log("location ok! " + resp.coords.latitude + " " + resp.coords.longitude)
+       }).catch((error) => {
+         console.log('Error getting location', error);
+       });
+    }
+
+    createMap() {        
       this.map = new leaflet.Map('map-container');
 
       let url = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
       let attrib = 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
-      let mapLayer = new leaflet.TileLayer(url, {minZoom: 4, maxZoom: 20, attribution: attrib});		
+      let mapLayer = new leaflet.TileLayer(url, {minZoom: 6, maxZoom: 19, attribution: attrib});		
 
       this.map.setView(new leaflet.LatLng(-20.126, -44.125),13);
       this.map.addLayer(mapLayer);
@@ -40,7 +53,7 @@ export class Tab1Page {
       this.storage.get('locationServiceUrl').then((urlValue) => {
         this.locationServiceUrl = urlValue;
         if (urlValue == '') {
-          this.locationServiceDescriptor = "A URL para enviar periodicamente sua localização não foi configurada. Você pode adicionar uma URL nas configurações"
+          this.locationServiceDescriptor = "A URL para enviar periodicamente sua localização não foi configurada. Você pode adicionar uma URL nas Configurações"
           this.storage.set('isLocationServiceEnabled', false)
           this.isLocationServiceUnavailable = true;
           this.acknowledgeLocationService();
